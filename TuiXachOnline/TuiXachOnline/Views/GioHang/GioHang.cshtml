@@ -1,0 +1,164 @@
+﻿@using TuiXachOnline.Models
+@model IEnumerable<SPGH>
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="Cart-info">
+    <table>
+        <thead>
+            <tr>
+                <td>Hình Sản Phẩm</td>
+                <td>Tên Sản Phẩm</td>
+                <td>Số Lượng Sản Phẩm</td>
+                <td>Đơn Giá</td>
+                <td>Tổng Tiền</td>
+            </tr>
+        </thead>
+        <tbody>
+            @{double TongTien = 0; }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><a href="/DetailTui/ChiTietSP?MaSP=@item.MaSPham"><img src="~/images/hinhtui/@item.AnhSP" style="width:100px"/></a></td>
+                    <td>@item.TenSPham</td>
+                    <td><input type="text" id="@item.MaSPham" class="txtSLGH" value="@item.SoLuong" /><a class="icon icon-upload btn-Update" onclick="CapNhat(@item.MaSPham)" aria-hidden="true"></a><a class="icon icon-trash-o btn-Delete" aria-hidden="true" onclick="XoaSP(@item.MaSPham)"></a></td>
+                    <td>@string.Format("{0:0,0}", item.GiaSP)</td>
+                    <td>@string.Format("{0:0,0}", item.TongTien)</td>
+                </tr>
+                TongTien += @item.GiaSP * @item.SoLuong;
+            }
+
+        </tbody>
+    </table>
+</div>
+<div class="TongTien">
+    <h2>Tổng Cộng:<span> @TongTien</span>VND</h2>
+</div>*@
+
+<form action="/GioHang/GioHang" method="post">
+    <section class="ftco-section ftco-cart">
+        <div class="Cart-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-list">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+
+                                    <th>Hình Sản Phẩm</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số Lượng Sản Phẩm</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Tổng Tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{double TongTien = 0; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="text-center">
+
+                                        <td><a href="/DetailTui/ChiTietSP?MaSP=@item.MaSPham"><img src="~/images/hinhtui/@item.AnhSP" style="width:100px" /></a></td>
+
+                                        <td style="width: 250px;">
+                                            @item.TenSPham
+                                        </td>
+
+                                        <td>
+                                            <input type="text" id="@item.MaSPham" class="txtSLGH" value="@item.SoLuong" /><a class="icon icon-upload btn-Update" onclick="CapNhat(@item.MaSPham)" aria-hidden="true" style="margin:10px"></a><a class="icon icon-trash-o btn-Delete" aria-hidden="true" onclick="XoaSP(@item.MaSPham)"></a>
+                                        </td>
+                                        <td>@string.Format("{0:0,0}", item.GiaSP)</td>
+
+                                        <td>@string.Format("{0:0,0}", item.TongTien)</td>
+                                    </tr>
+                                    TongTien += @item.GiaSP * @item.SoLuong;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="TongTien">
+        <h4>Tổng Cộng: <span id="tongtien">@Session["TongTien"]</span> VND</h4><p style="float:right;"></p>
+    </div>
+
+    <br />
+
+    <div id="frm-thanhtoan" style="margin-left: 30%;">
+        <h3 style="margin-left: 106px;font-weight: bold;">Thanh toán</h3>
+        <table>
+            <tbody>
+                @foreach (var dg in (IList<KHACH_HANG>)ViewData["lstkh"])
+            {
+                    <tr>
+                        <td>Tên người nhận</td>
+                        <td><input type="text" name="tennguoinhan" id="tennguoinhan" value="@dg.TenKH" /></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ nhận hàng</td>
+                        <td><input type="text" name="diachinhanhang" id="diachinhanhang" value="@dg.DiaChi" /></td>
+                    </tr>
+                        <tr>
+                            <td>Điện thoại nhận hàng</td>
+                            <td><input type="text" name="dienthoainhanhang" id="dienthoainhanhang" value="@dg.SDT" /></td>
+                        </tr>
+                        <tr>
+                            <td>Phương thức thanh toán</td>
+                            <td>
+                                <select class="dropdown" name="pttt" id="pttt">
+                                    <option value="shipcod">ShipCod</option>
+                                    <option value="paypal">Paypal</option>
+                                    <option value="baokim">Bảo kim</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ngày nhận hàng</td>
+                            <td>
+                                <div id="ngaynhanhang">
+                                    <script type="text/javascript">
+                                        var day = new Date();
+                                        var d = day.getDate() + 5;
+                                        var m = day.getMonth() + 1;
+                                        var y = day.getFullYear();
+                                        document.getElementById('ngaynhanhang').innerHTML = +d + "/" + m + "/" + y;
+                                    </script>
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input name="donhang.Email" class="" /></td>
+
+                            </tr>
+                        <tr>
+                           <td>Tổng tiền cần thanh toán:</td>
+                            <td> @TongTien VNĐ</td>
+                        </tr>
+                }
+            </tbody>
+         
+        </table>
+        <input type="submit" value="Đặt hàng" style="margin-left: 209px;" />
+    </div>
+    <input type="submit" value="" />
+</form>
+
+
+    <script type="text/javascript">
+    function ThanhToan() {
+        if ($('#MaSach').val() != null) {
+            $('#frm-thanhtoan').css('display', 'block');
+            $('#TongTien').css('display', 'none');
+        }
+        else {
+            alert("Vui lòng chọn sách cần mua trước khi thanh toán!")
+        }
+    }
+    </script>

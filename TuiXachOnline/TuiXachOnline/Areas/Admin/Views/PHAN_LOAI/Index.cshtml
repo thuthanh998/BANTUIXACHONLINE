@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TuiXachOnline.Models.PHAN_LOAI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (Session["TenDNAdmin"] == null)
+{
+    Response.Redirect(Url.Action("LoginAdmin", "Login"));
+}
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+    .btncreate {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    th {
+        color: white;
+        background-color: #17aa67;
+    }
+</style>
+<h4>QUẢN LÝ LOẠI TÚI</h4>
+
+<p>
+    @Html.ActionLink("Tạo Loại Túi", "Create")
+</p>
+<table class="table table-bordered" style="background-color:white">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.MaLoai }) 
+        </td>
+    </tr>
+}
+
+</table>

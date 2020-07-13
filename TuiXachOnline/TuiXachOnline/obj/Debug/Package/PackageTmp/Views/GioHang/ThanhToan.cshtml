@@ -1,0 +1,82 @@
+﻿@using TuiXachOnline.Models
+@using Microsoft.Owin.Security.Cookies;
+@using System.Security.Claims;
+@model IEnumerable<SPGH>
+
+    @{
+        ViewBag.Title = "ThanhToan";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <section class="ftco-section ftco-cart">
+        <div class="Cart-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cart-list">
+                        <table class="table">
+                            <thead class="thead-primary">
+                                <tr class="text-center">
+
+                                    <th>Hình Sản Phẩm</th>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Số Lượng Sản Phẩm</th>
+                                    <th>Đơn Giá</th>
+                                    <th>Tổng Tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{double TongTien = 0; }
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="text-center">
+
+                                        <td><a href="/DetailTui/ChiTietSP?MaSP=@item.MaSPham"><img src="~/images/hinhtui/@item.AnhSP" style="width:100px" /></a></td>
+
+                                        <td style="width: 250px;">
+                                            @item.TenSPham
+                                        </td>
+
+                                        <td>
+                                            <input type="text" id="@item.MaSPham" class="txtSLGH" value="@item.SoLuong" /><a class="icon icon-upload btn-Update" onclick="CapNhat(@item.MaSPham)" aria-hidden="true" style="margin:10px"></a><a class="icon icon-trash-o btn-Delete" aria-hidden="true" onclick="XoaSP(@item.MaSPham)"></a>
+                                        </td>
+                                        <td>@string.Format("{0:0,0}", item.GiaSP)</td>
+
+                                        <td>@string.Format("{0:0,0}", item.TongTien)</td>
+                                    </tr>
+                                    TongTien += @item.GiaSP * @item.SoLuong;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div><h3>liu liu liu</h3></div>
+    @*<div class="TongTien">
+            <h2>Tổng Cộng: <span> @string.Format("{0:0,0}", TongTien) </span> VND</h2>
+        </div>*@
+    <h2>THÔNG TIN ĐẶT HÀNG</h2>
+    @{
+
+      KHACH_HANG kh = (KHACH_HANG)Session["TenDN"];
+
+    }
+    <table align="center">
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+            <tr>
+                <td>Họ Và Tên Khách Hàng:</td>
+                <td>@kh.TenKH</td>
+            </tr>
+            <tr>
+                <td>địa chỉ:</td>
+                <td>@kh.DiaChi</td>
+            </tr>
+            <tr>
+                <td>địa chỉ:</td>
+                <td>@kh.SDT</td>
+            </tr>
+        }
+    </table>

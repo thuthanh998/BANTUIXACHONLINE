@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "createPub";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+    .btncreate {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    th {
+        color: white;
+        background-color: #17aa67;
+    }
+</style>
+
+<link href="~/Content/CreateAll.css" rel="stylesheet" />
+<h4>QUẢN LÝ TÀI KHOẢN</h4>
+<hr />
+<form action="/Admin/AminCRUD/Khachhang" method="post" name="myForm">
+    <form class="frmauthor">
+        <div class="context">
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="background-color:#7b7b7b;">Mã KH</th>
+                        <th style="background-color:#7b7b7b;">Tên KH</th>
+                        <th style="background-color:#7b7b7b;">Ngày sinh</th>
+                        <th style="background-color:#7b7b7b;">Địa chỉ</th>
+                        <th style="background-color:#7b7b7b;">SĐT</th>
+                        <th style="background-color:#7b7b7b;">Email</th>
+                        <th style="background-color:#7b7b7b;">Tên DN</th>
+                        <th style="background-color:#7b7b7b;">Mật khẩu</th>
+                        <th style="background-color:#7b7b7b;"><i class="fa fa-sort"></i> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.sklist)
+                    {
+                        <tr>
+
+                            <td>@item.MaKH</td>
+                            <td>@item.TenKH</td>
+                            <td>@item.NgaySinh</td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.SDT</td>
+                            <td>@item.Email</td>
+                            <td>@item.TenDN</td>
+                            <td>@item.MatKhau</td>
+                           
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="text_right_author">
+
+            </div>
+        </div>
+    </form>
+</form>
+
+
+
+
+
+
+

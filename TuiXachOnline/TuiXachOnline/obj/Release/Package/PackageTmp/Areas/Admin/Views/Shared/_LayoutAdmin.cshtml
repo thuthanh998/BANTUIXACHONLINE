@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<head>
+    <!-- Open Graph Meta-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link href="~/css/mains.css" rel="stylesheet" />
+    <link href="~/css/main2.css" rel="stylesheet" />
+    <!-- Font-icon css-->
+    <link href="~/css/SiteS.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--them 2 casi nay-->
+    <link href="~/css/StyleSheet10.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="app sidebar-mini rtl" style="font-size:0.820rem;font-family:Arial">
+    <!-- Navbar-->     
+    <aside>
+
+        <nav class="navbar fixed-top"style="background-color:#383838">
+            <a class="navbar-brand" href="#" style="color:#fff"> Quản Lý Túi Xách</a>
+
+
+            <!--Notification Menu-->
+        </nav>
+    </aside>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+        <div class="app-sidebar__user">
+
+            <img class="app-sidebar__user-avatar" style="width:20%" src="~/images/man.png" alt="User Image">
+            <div> 
+                <p style="display:inline-block" class="app-sidebar__user-name">@Session["TenDNAdmin"]</p>
+
+
+                <p style="display:inline-block" class="app-sidebar__user-designation"></p>
+
+
+            </div>
+        </div>
+        <ul class="app-menu">
+            <li><a class="app-menu__item" href="@Url.Action("Index","AminCRUD")"><span class="app-menu__label" style="color:#808080">Trang chính</span></a></li>
+
+            <li><a class="app-menu__item" href="@Url.Action("Index", "PHAN_LOAI")" data-toggle="treeview"><span class="app-menu__label">Quản lý loại túi</span></a></li>
+            <li><a class="app-menu__item" href="@Url.Action("createPub","AminCRUD")" data-toggle="treeview"><span class="app-menu__label">Quản lý NSX</span></a></li>
+            <li><a class="app-menu__item" href="@Url.Action("Hoadon","AminCRUD")" data-toggle="treeview"><span class="app-menu__label">Quản lý hóa đơn</span></a></li>
+            <li><a class="app-menu__item" href="@Url.Action("CTHoadon","AminCRUD")" data-toggle="treeview"><span class="app-menu__label">Quản lý chi tiết hóa đơn</span></a></li>
+            @*<li><a class="app-menu__item" href="@Url.Action("Khachhang","AminCRUD")" data-toggle="treeview"><span class="app-menu__label">Quản lý tài khoản</span></a></li>*@
+            <li><a class="app-menu__item" href="@Url.Action("Index","KHACH_HANG")" data-toggle="treeview"><span class="app-menu__label">Quản lý khách hàng</span></a></li>
+            <li><a class="app-menu__item" href="@Url.Action("LoginAdmin","Login")" data-toggle="treeview"><span class="app-menu__label">Thoát</span></a></li>
+
+
+        </ul>
+    </aside>
+    <main class="app-content">
+        @RenderBody()
+    </main>
+    @*<footer style="background-color:#e5e5e5;margin-top:0px;color:#808080">
+        <p style="text-align:center;padding-left: 119px">&copy;</p>
+    </footer>*@
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+
+</body>
+</html>

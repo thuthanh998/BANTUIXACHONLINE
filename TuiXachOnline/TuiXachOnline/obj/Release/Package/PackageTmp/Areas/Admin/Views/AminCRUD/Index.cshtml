@@ -1,0 +1,138 @@
+﻿@using TuiXachOnline.Models
+@model PagedList.IPagedList<TuiXachOnline.Models.SANPHAM>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="~/Content/IndexAdmin.css" rel="stylesheet" />
+<h4 style="color:black;">QUẢN LÝ TÚI XÁCH</h4>
+<hr />
+
+<!-- Thêm mã phân trang -->
+@*<br />
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
+
+<!-- Kết thúc -->
+@if (Session["TenDNAdmin"] == null)
+{
+    Response.Redirect(Url.Action("LoginAdmin", "Login"));
+}
+
+
+<body>
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <a class="themsach" href="@Url.Action("Create","AminCRUD") ">Thêm Sản Phẩm</a>
+                <div class="row" style="padding-top:10px; margin-bottom:10px">
+                    <div class="col-sm-4">
+
+                        <div class="show-entries">
+                            @using (Html.BeginForm("Index", "AminCRUD", FormMethod.Get))
+                            {
+                                <p>
+                                    Hiện @Html.DropDownList("size", (List<SelectListItem>)ViewBag.size, new { @onchange = "this.form.submit();" }) Sản phẩm
+                                    @Html.Hidden("page", (object)ViewBag.page)
+                                    @Html.Hidden("sortProperty", (object)ViewBag.sortProperty)
+                                    @Html.Hidden("sortOrder", (object)ViewBag.sortOrder)
+                                    @Html.Hidden("searchString", (object)ViewBag.searchValue)
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div class="search-box" style="width: 500px">
+                        @*<div class="input-group">
+
+                                @using (Html.BeginForm("Index", "AdminCRUD", FormMethod.Get))
+                                {
+
+                                    @Html.TextBox("searchString", (string)ViewBag.searchValue, new { @class = "form-control", @placeholder = "Search" }) <input type="submit" value="Tìm kiếm" />
+                                }
+
+                            </div>*@
+
+                        <form action="/Admin/AminCRUD" method="get" class="formsearch">
+                     
+                            <input class="" id="searchString" name="searchString" placeholder="Search" type="search">
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="cc" style="background-color:#ffffff; padding: 2%;">
+            <table class="table table-bordered" >
+                <thead>
+                    <tr >
+                        <th >Sản Phẩm</th>
+                        <th >Mã Loại</th>
+                        <th>Mã NSX</th>
+                        <th>Đơn Giá</th>
+                        <th >Hình</th>
+                        <th >Số Lượng</th>
+                        <th >Nội Dung</th>
+                        <th ><i class="fa fa-sort"></i> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>@Html.DisplayFor(modelItem => item.TenSP)</td>
+                            <td>@Html.DisplayFor(modelItem => item.MaLoai)</td>
+                            <td>@Html.DisplayFor(modelItem => item.MaNSX)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DonGia)</td>
+                            <td>@Html.DisplayFor(modelItem => item.HinhMinhHoa)</td>
+                            <td>@Html.DisplayFor(modelItem => item.SoLuong)</td>
+                            <td>@Html.DisplayFor(modelItem => item.NoiDung)</td>
+                            <td>
+                                <button type="button" rel="tooltip" class="btn btn-info btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    <a href="@Url.Action("Edit", "AminCRUD", new { id = item.MaSP })">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                </button>
+                                @*<button type="button" rel="tooltip" class="btn btn-success btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    <a href="@Url.Action("ChitietBookAdmin", "AdminCRUD", new { item.MaSP })">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                </button>*@
+
+                                <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
+                                    <a href="@Url.Action("Delete", "AminCRUD", new { id = item.MaSP })">
+                                        <i class="material-icons">
+                                            close
+                                        </i>
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+
+
+
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <div class="hint-text">Hiện trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) trong @Model.PageCount trang </div>
+                <ul class="pagination">
+
+                    <li class="page-item">@Html.PagedListPager(Model, page => Url.Action("Index", new { page, size = ViewBag.currentSize }))</li>
+
+                </ul>
+            </div>
+             </div>
+        </div>
+    </div>
+</body>

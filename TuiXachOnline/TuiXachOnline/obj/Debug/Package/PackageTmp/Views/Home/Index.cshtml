@@ -1,0 +1,163 @@
+﻿@using TuiXachOnline.Models
+@model List<SANPHAM>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+@*<section id="home-section" class="hero">
+    <div class="home-slider">
+        <div class="slider-item" style="background-image: url('/images/bgindex.jpg');height:429px">
+          
+        </div>
+
+    </div>
+</section>*@
+<!--dich vu-->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row no-gutters ftco-services">
+            <div class="col-md-3 text-center d-flex align-self-stretch">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-1 active d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-shipped"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Free Shipping</h3>
+                        <span>On order over $100</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-2 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-diet"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Always Fresh</h3>
+                        <span>Product well package</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-3 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-award"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Superior Quality</h3>
+                        <span>Quality Products</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center d-flex align-self-stretch">
+                <div class="media block-6 services mb-md-0 mb-4">
+                    <div class="icon bg-color-4 d-flex justify-content-center align-items-center mb-2">
+                        <span class="flaticon-customer-service"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Support</h3>
+                        <span>24/7 Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--view loai-->
+   <section class="ftco-section ftco-category ftco-no-pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 order-md-last align-items-stretch d-flex">
+                        <div class="category-wrap-2 img align-self-stretch d-flex" style="background-image: url(/images/hinhtui/txt8.jpg);">
+                            <div class="text text-center">
+                                <h2>Monmon bag</h2>
+                                <p>Protect the health of every home</p>
+                                <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="category-wrap img mb-4 d-flex align-items-end" style="background-image: url(/images/balo.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="/DetailTui/ChudeSP?MaLoai=1">Balo</a></h2>
+                            </div>
+                        </div>
+                        <div class="category-wrap img d-flex align-items-end" style="background-image: url(/images/vi.jpg);">
+                            <div class="text px-3 py-1">
+                                <h2 class="mb-0"><a href="/DetailTui/ChudeSP?MaLoai=2">Ví</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="category-wrap img mb-4 d-flex align-items-end" style="background-image: url(/images/tuicheo.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="/DetailTui/ChudeSP?MaLoai=3">Túi xách</a></h2>
+                    </div>
+                </div>
+                <div class="category-wrap img d-flex align-items-end" style="background-image: url(/images/tuivai.jpg);">
+                    <div class="text px-3 py-1">
+                        <h2 class="mb-0"><a href="/DetailTui/ChudeSP?MaLoai=4">Túi đeo vai</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--view product-->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-3 pb-3">
+            <div class="col-md-12 heading-section text-center">
+                <span class="subheading">Featured Products</span>
+                <h2 class="mb-4">Our Products</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+@{ int i = 0;}
+@foreach (var item in Model)
+{
+        
+            <div class="col-md-6 col-lg-3"style="max-width: 24%; display: inline-block;">
+                <div class="product">
+                    <a href="~/DetailTui/ChitietSP?MaSP=@item.MaSP" class="img-prod">
+                        <img class="img-fluid" src="~/images/hinhtui/@item.HinhMinhHoa" alt="Colorlib Template">
+                       
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="text py-3 pb-4 px-3 text-center">
+                        <h3 style="font-size: 13px;">@item.TenSP</h3>
+                        <div class="d-flex">
+                            <div class="pricing">
+                                <p class="price"><span>@string.Format("{0:0,0}",item.DonGia)</span> VND</p>
+                            </div>
+                        </div>
+                        <div class="bottom-area d-flex px-3">
+                            <div class="m-auto d-flex">
+                                <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                    <span><i class="ion-ios-menu"></i></span>
+                                </a>
+                                <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                    <span><i class="ion-ios-cart"></i></span>
+                                </a>
+                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                    <span><i class="ion-ios-heart"></i></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+       
+}
+    </div>
+</section>
+</div>

@@ -1,0 +1,269 @@
+﻿
+
+@model TuiXachOnline.Models.DON_DAT_HANG
+@{
+    ViewBag.Title = "EditHD";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/css/EditAdmin.css" rel="stylesheet" />
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+    .btncreate {
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    th {
+        color: white;
+        background-color: #17aa67;
+    }
+</style>
+@*-------------------------------------*@
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4 style="">CHỈNH SỬA HÓA ĐƠN</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaDH)
+
+
+        <!–---------------------------PHẦN ĐẦU------------------------------–>
+        <div class="all" style="font-family:serif">
+
+
+
+            <!–---------------------------PHẦN HAI------------------------------–>
+
+
+
+            <!–---------------------------ROW 2------------------------------–>
+            <div class="row2">
+
+                <div class="col-md-3 col-lg-2">
+                    <div class="form-group">
+                        <label class="control-label">Mã SP</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.MaDH, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.MaDH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 col-lg-2">
+                    <div class="form-group">
+                        <label class="control-label">Mã KH</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-lg-2">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <!–---------------------------ROW 3------------------------------–>
+
+
+            <div class="row3">
+                <div class="col-md-1 col-lg-2" style="position:absolute">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @style = "display: none" } })
+                        @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        <label class="control-label">Địa Chỉ</label>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        <label class="control-label">SĐT</label>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                    </div>
+                </div>
+                <div class="col-md-1 col-lg-2">
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    <label class="control-label">Ngày đặt hàng</label>
+                </div>
+            </div>
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    @Html.EditorFor(model => model.NgayDatHang, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NgayDatHang, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                <label class="control-label">Ngày giao hàng</label>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                @Html.EditorFor(model => model.NgayGiaoHang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayGiaoHang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                <label class="control-label">trị giá DH</label>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                @Html.EditorFor(model => model.TriGiaDH, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TriGiaDH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                <label class="control-label">PTTT</label>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                @Html.EditorFor(model => model.PTTT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PTTT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                <label class="control-label">Đã Giao</label>
+            </div>
+        </div>
+        <div class="col-md-1 col-lg-2">
+            <div class="form-group">
+                @Html.EditorFor(model => model.Dagiao, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Dagiao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+                <!–---------------------------ROW 4------------------------------–>
+
+    @*<div class="row4">
+
+
+
+
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    <label class="control-label">CreatedDate</label>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    <label class="control-label">IsActive</label>
+                </div>
+            </div>
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+
+                    @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+                <!–---------------------------ROW 5------------------------------–>
+
+    @*<div class="row5">
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+                    <label class="control-label">ModifiedDate</label>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-1 col-lg-2">
+                <div class="form-group">
+
+                    <div class="input-group date">
+                        @Html.EditorFor(model => model.ModifiedDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                        @Html.ValidationMessageFor(model => model.ModifiedDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>*@
+
+                <!–---------------------------SUMMARY------------------------------–>
+
+
+                <!–---------------------------IMG------------------------------–>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <a href="@Url.Action("Hoadon","AminCRUD")" class="btncreate"> Quay Lại</a>
+
+            <input type="submit" class="btncreate" style="width:130px; background-color:#17aa67" value="Lưu" />
+
+        </div>
+    </div>
+
+
+}

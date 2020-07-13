@@ -1,0 +1,78 @@
+﻿form.form1{
+    background-color:#fff;
+}
+
+.btn_Choose{
+    border-radius:3px;
+    border:2px solid #3d81fb;
+    width:100px;
+    height:40px;
+    background-color:white;
+    font-weight:bold;
+    text-decoration: none;
+}
+a{
+    color:#3d81fb;
+}
+.material-icons{
+    background-color: #50a3ec;
+    border-radius: 30px;
+    color: #fff;
+    width: 33px;
+    height: 33px;
+    text-align: center;
+    font-size: 19px;
+    border: 6px solid #50a3ec;
+    box-shadow: 2px 1px 4px 1px lightsteelblue;
+}
+
+th{
+        background-color: #f0f1f3;
+    text-align: center;
+
+}
+td{
+    text-align:center
+}
+.pagination {
+       padding-left: 160px;
+    margin: 0 0 5px;
+        padding-top: 10px;
+}
+
+    .pagination li a {
+        border: none;
+        font-size: 13px;
+        min-width: 30px;
+        min-height: 30px;
+        padding: 5px 10px;
+        color: #999;
+        margin: 0 2px;
+        line-height: 30px;
+        border-radius: 5px !important;
+        text-align: center;
+    }
+
+      .pagination li a:hover {
+            color: #666;
+        }
+
+    .pagination li.a {
+        background: #03A9F4;
+    }
+
+        .pagination li.active a:hover {
+            background: #0397d6;
+        }
+        .pagination li.active a:focus {
+            background: red;
+        }
+
+    .pagination li.disabled i {
+        color: #ccc;
+    }
+
+    .pagination li i {
+        font-size: 16px;
+        padding-top: 6px
+    }

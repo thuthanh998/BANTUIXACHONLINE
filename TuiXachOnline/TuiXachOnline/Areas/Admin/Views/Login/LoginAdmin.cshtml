@@ -1,0 +1,73 @@
+﻿
+@model TuiXachOnline.Models.ADMIN
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/css/Loginadminss.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginAdmin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script>
+        function validateLogin() {
+            var x = document.forms["myForm"]["TenDNAdmin"].value;
+            var y = document.forms["myForm"]["MatKhauAdmin"].value;
+
+            if (x == "" || y == "") {
+                alert("You need enter Email and Password");
+                return false;
+            }
+        }
+        function disablelogin() {
+            document.getElementById("TenDNAdmin").disabled = true;
+            document.getElementById("MatKhauAdmin").disabled = true;
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <style>
+    </style>
+    <div class="login-ad">
+        <!--Sử dụng beginform truy vấn đến phường thức post-->
+        <form action="/Admin/Login/LoginAdmin" method="post" name="myForm">
+
+            <div class="">
+                
+
+                @{if (ViewBag.error != null)
+                    {
+                        <p style="color:red">@ViewBag.error</p>
+                    }
+                    else if (ViewBag.error == null)
+                    {
+                        <h2 style="color:#000000"> ĐĂNG NHẬP ADMIN</h2>
+                    }
+                }
+
+
+
+            </div>
+            <div class="div-login">
+                <input class="input-validation-error text-box single-line" data-val="true" id="TenDNAdmin" name="TenDNAdmin" placeholder="EmailAdmin" type="text" value="">
+            </div>
+            <div class="div-login">
+                <input class="input-validation-error text-box single-line" data-val="true" id="MatKhauAdmin" name="MatKhauAdmin" placeholder="MatKhauAdmin" type="password" value="">
+            </div>
+            <div>
+            </div>
+            <div class="div-login"> <button id="btnlogin" onclick="return validateLogin()">Đăng Nhập</button> </div>
+
+        </form>
+
+
+    </div>
+</body>
+</html>

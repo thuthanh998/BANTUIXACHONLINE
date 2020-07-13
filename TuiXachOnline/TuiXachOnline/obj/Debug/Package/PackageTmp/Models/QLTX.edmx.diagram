@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="83ce47dde34846f48dec3a2e1ca69e31" Name="Diagram1">
+        <EntityTypeShape EntityType="QLTuiXachModel.ADMIN" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.CTDON_HANG" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.DON_DAT_HANG" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.KHACH_HANG" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.NHA_SAN_XUAT" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.NHAP_KHO" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.PHAN_LOAI" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.SANPHAM" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.sysdiagram" Width="1.5" PointX="8.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLTuiXachModel.TIN_TUC" Width="1.5" PointX="8.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="QLTuiXachModel.FK_CTDON_HANG_DON_DAT_HANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_CTDON_HANG_SANPHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_DON_DAT_HANG_KHACH_HANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_NHAP_KHO_NHA_SAN_XUAT2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_SANPHAM_NHA_SAN_XUAT" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_NHAP_KHO_PHAN_LOAI2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLTuiXachModel.FK_SANPHAM_PHAN_LOAI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

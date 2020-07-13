@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "NSX";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .frmauthor {
+        font-family: serif;
+    }
+
+    .btncreate {
+        border-radius: 5px;
+        background-color: red;
+        border: none;
+        color: white;
+        padding: 10px 23px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        color: white;
+    }
+
+    table {
+        text-align: center;
+    }
+
+    th {
+        color: black;
+        background-color: #E8E8E8;
+    }
+</style>
+<script>
+    function validateCreate() {
+        var x = document.forms["myForm"]["ten"].value;
+        var y = document.forms["myForm"]["diachi"].value;
+
+        if (x == "" || y == "") {
+            alert("Vui lòng điền đầy đủ thông tin sách trước khi tạo !");
+            return false;
+        }
+    }
+
+</script>
+<h4 style="font-family:serif">Quản Lý Nhà Sản Xuất</h4>
+<hr />
+<form action="/Admin/Quanly/createNSX" method="post" name="myForm">
+    <form class="frmauthor">
+        <div class="context">
+            <div class="text_left_author">
+                <p style="font-weight:bold;font-size:20px; font-family:serif">Thông tin Nhà sản xuất</p>
+                <table class="table_Author">
+                    <tr>
+                        <td>
+
+                            <input type="text" name="ten" placeholder="Tên nhà sản xuất">
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="diachi" placeholder="địa chỉ" /></td>
+                    </tr>
+
+                </table>
+                <br />
+
+
+
+
+                <div>
+                    <a href="@Url.Action("Index","Admin")" class="btncreate"> Quay Lại</a>
+
+                    <input type="submit" class="btncreate" onclick="return validateCreate()" style="width:130px; background-color:#17aa67" value="Tạo nhà sản xuất" />
+
+
+
+                </div>
+            </div>
+
+            <table class="table table-dark" style="width:50%;">
+                <thead>
+                    <tr>
+                        <th>Tên nhà xuất bản</th>
+                        <th>Địa chỉ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.sklist)
+                    {
+                        <tr>
+
+                            <td>@item.TenNSX</td>
+                            <td>@item.DiaChi</td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="text_right_author">
+
+            </div>
+        </div>
+    </form>
+
+
+
+</form>
+
+

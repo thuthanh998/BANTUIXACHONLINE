@@ -1,0 +1,274 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - tuixach</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/aos.css">
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css">
+
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    </head>     
+<body class="goto-here">
+   <div class="py-1 bg-primary">
+        <div class="container">
+            <div class="row no-gutters d-flex align-items-start align-items-center px-md-0">
+                <div class="col-lg-12 d-block">
+                    <div class="row d-flex">
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-phone2"></span></div>
+                            <span class="text">+ 1235 2355 98</span>
+                        </div>
+                        <div class="col-md pr-4 d-flex topper align-items-center">
+                            <div class="icon mr-2 d-flex justify-content-center align-items-center"><span class="icon-paper-plane"></span></div>
+                            <span class="text">monmon@email.com</span>
+                        </div>
+                        <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="#" style="color:#ffffff">@User.Identity.Name</a></li>
+                               <li><a href="@Url.Action("SignOut", "Account")" style="color:#ffffff">Đăng xuất</a></li>
+                                </ul>
+                            }
+                            else
+                            { <a href="@Url.Action("Index", "Account")" style="color:#ffffff">Đăng nhập</a>}
+
+
+                            @*@{
+                                if (Session["TenDN"] == null)
+                                {
+                                    <a href="#"><span class="fa fa-user"></span> Tài Khoản Của Tôi</a>
+                                    <a href="/User/DangNhap"><span class="fa fa-sign-in" style="color:#ffffff"></span> Đăng Nhập</a>
+                                }
+                                else
+                                {
+                                    <a href="/DKDN/ThongTinCaNhan" style="color:#ffffff"><span class="fa fa-hand-peace-o" style="color:#ffffff"></span> Xin Chào! @Session["TenDN"]</a>
+                                    <a href="/User/DangXuat" style="color:#ffffff"><span class="fa fa-sign-out" style="color:#ffffff"></span> Đăng Xuất</a>
+                                }
+                            }*@
+                           
+                        </div>
+                        <div class="search-box">
+                            @using (Html.BeginForm("Index", "TimKiem", FormMethod.Get))
+                            {
+                                <input id="SearchText" name="SearchText" type="text" value=""style="width:205px;height:25px;"/>
+                                @*@Html.TextBox("SearchText");*@
+                                <input type="submit" value="Tìm kiếm" class="btn btn-primary py-2 px-3" style="font-size: smaller;"/>
+                                
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+        <div class="container">
+            <a class="navbar-brand" style="color:#de6379" href="@Url.Action("Index", "Home")">Monmon bag</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="@Url.Action("Index", "Home")" class="nav-link">Trang Chủ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" @*aria-haspopup="true" aria-expanded="false"*@>Loại túi</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown04">           
+                            <a class="dropdown-item" href="/DetailTui/ChudeSP?MaLoai=1">Balo</a>
+                            <a class="dropdown-item" href="/DetailTui/ChudeSP?MaLoai=2">Ví</a>
+                            <a class="dropdown-item" href="/DetailTui/ChudeSP?MaLoai=3">Túi Xách</a>
+                            <a class="dropdown-item" href="/DetailTui/ChudeSP?MaLoai=4">Túi đeo vai</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">Về Chúng Tôi</a></li>
+                    <li class="nav-item"><a href="~/TinTuc/Index" class="nav-link">Tin Tức</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Liên Hệ</a></li>
+                    @*<li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon icon-shopping-cart"style="margin-right: 5px; font-size: 16px"></span>[0]</a></li>*@
+                    <li class="nav-item cta cta-colored" id="cart">
+                        <a href="/GioHang/GioHang" class="nav-link">
+                            <h7 class="icon icon-shopping-cart"></h7>
+                            <span>@Session["TongSL"] Sản phẩm - @Session["TongTien"] VND</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home-section" class="hero">
+        <div class="home-slider owl-carousel">
+            <div class="slider-item" style="background-image: url('images/balo.jpg');">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                        <div class="col-md-12 ftco-animate text-center">
+                            <h1 class="mb-2">Xu hướng thời trang túi xách</h1>
+                            <h2 class="subheading mb-4">các hãng túi xách nổi tiếng hội tụ</h2>
+                            <p><a href="#" class="btn btn-primary">Xem chi tiết</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-item" style="background-image: url('../../images/bgindex.jpg');">
+                <div class="overlay"></div>
+                <div class="container">
+                    <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
+                        <div class="col-sm-12 ftco-animate text-center">
+                            <h1 class="mb-2">Xu hướng thời trang túi xách</h1>
+                            <h2 class="subheading mb-4">các hãng túi xách nổi tiếng hội tụ</h2>
+                            <p><a href="#" class="btn btn-primary">Xem chi tiết</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <div class="container-fluid">
+        @RenderBody()
+        </div>
+ 
+        <footer class="ftco-footer ftco-section">
+            <div class="container">
+                <div class="row">
+                    <div class="mouse">
+                        <a href="#" class="mouse-icon">
+                            <div class="mouse-wheel"><span class="icon icon-angle-up"style="font-size:27px"></span></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">MonmonBag</h2>
+                            <p>Xu hướng thời trang, phá tan đẳng cấp</p>
+                            <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                                <a href="#"><i class="icon icon-twitter" aria-hidden="true" style="color:#c5566a;font-size:28px;margin:20px"></i></a>
+                                <a href="#"><i class="icon icon-facebook" aria-hidden="true" style="color:#c5566a;font-size:28px;margin:20px"></i></a>
+                                <a href="#"><i class="icon icon-instagram" aria-hidden="true" style="color:#c5566a;font-size:28px;margin:20px"></i></a>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4 ml-md-5">
+                            <h2 class="ftco-heading-2">Menu</h2>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="py-2 d-block">Loại túi</a></li>
+                                <li><a href="#" class="py-2 d-block">Về chúng tôi</a></li>
+                                <li><a href="#" class="py-2 d-block">Blog</a></li>
+                                <li><a href="#" class="py-2 d-block">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">Help</h2>
+                            <div class="d-flex">
+                                <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
+                                    <li><a href="#" class="py-2 d-block">Thông tin vận chuyển</a></li>
+                                    <li><a href="#" class="py-2 d-block">Chính sách đổi trả</a></li>
+                                    <li><a href="#" class="py-2 d-block">Chính sách ưu đãi</a></li>
+                                    <li><a href="#" class="py-2 d-block">Điều khoản và bảo mật</a></li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="ftco-footer-widget mb-4">
+                            <h2 class="ftco-heading-2">Xin liên hệ tại</h2>
+                            <div class="block-23 mb-3">
+                                <ul>
+                                    <li><i class="icon icon-map-marker" style="margin-right:10px"></i><span class="text">TP Thủ Dầu Một, Bình Dương</span></li>
+                                    <li><a href="#" style="color:#c5566a"><span class="icon icon-phone"style="margin-right:10px"></span><span class="text"> 392 3929 210</span></a></li>
+                                    <li><a href="#"><span class="icon icon-envelope"style="margin-right:10px"></span><span class="text">monmon@mail.com</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved 
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js/google-map.js"></script>
+    <script src="js/main.js"></script>
+
+    <script src="~/js/GioHang.js"></script>
+    <script src="~/js/JS.js"></script>
+  
+   
+</body>
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            xfbml            : true,
+            version          : 'v7.0'
+          });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your Chat Plugin code -->
+<div class="fb-customerchat"
+     attribution=setup_tool
+     page_id="107998004309825"
+     theme_color="#a24158"
+     logged_in_greeting="Chào bạn, bạn cần hỗ trợ gì?"
+     logged_out_greeting="Chào bạn, bạn cần hỗ trợ gì?">
+</div>
+</html>

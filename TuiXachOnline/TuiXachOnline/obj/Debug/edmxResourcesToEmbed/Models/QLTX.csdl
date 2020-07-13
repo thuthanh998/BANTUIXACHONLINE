@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLTuiXachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ADMIN">
+    <Key>
+      <PropertyRef Name="MaAdmin" />
+    </Key>
+    <Property Name="MaAdmin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SdtAdmin" Type="Int32" />
+    <Property Name="EmailAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenDNAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhauAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="CTDON_HANG">
+    <Key>
+      <PropertyRef Name="MaDH" />
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaDH" Type="Int32" Nullable="false" />
+    <Property Name="MaSP" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ThanhTien" Type="Decimal" Precision="29" Scale="0" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="DON_DAT_HANG" Relationship="Self.FK_CTDON_HANG_DON_DAT_HANG" FromRole="CTDON_HANG" ToRole="DON_DAT_HANG" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CTDON_HANG_SANPHAM" FromRole="CTDON_HANG" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="DON_DAT_HANG">
+    <Key>
+      <PropertyRef Name="MaDH" />
+    </Key>
+    <Property Name="MaDH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaKH" Type="Int32" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NgayDatHang" Type="DateTime" Precision="0" />
+    <Property Name="NgayGiaoHang" Type="DateTime" Precision="0" />
+    <Property Name="TriGiaDH" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="PTTT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HTGH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dagiao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CTDON_HANG" Relationship="Self.FK_CTDON_HANG_DON_DAT_HANG" FromRole="DON_DAT_HANG" ToRole="CTDON_HANG" />
+    <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK_DON_DAT_HANG_KHACH_HANG" FromRole="DON_DAT_HANG" ToRole="KHACH_HANG" />
+  </EntityType>
+  <EntityType Name="KHACH_HANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TenDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DON_DAT_HANG" Relationship="Self.FK_DON_DAT_HANG_KHACH_HANG" FromRole="KHACH_HANG" ToRole="DON_DAT_HANG" />
+  </EntityType>
+  <EntityType Name="NHA_SAN_XUAT">
+    <Key>
+      <PropertyRef Name="MaNSX" />
+    </Key>
+    <Property Name="MaNSX" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenNSX" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHAP_KHO" Relationship="Self.FK_NHAP_KHO_NHA_SAN_XUAT2" FromRole="NHA_SAN_XUAT" ToRole="NHAP_KHO" />
+    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_NHA_SAN_XUAT" FromRole="NHA_SAN_XUAT" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="NHAP_KHO">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenHang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NhaCungCap" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ThoiGian" Type="DateTime" Precision="0" />
+    <Property Name="MaLoai" Type="Int32" />
+    <Property Name="MaNSX" Type="Int32" />
+    <NavigationProperty Name="NHA_SAN_XUAT" Relationship="Self.FK_NHAP_KHO_NHA_SAN_XUAT2" FromRole="NHAP_KHO" ToRole="NHA_SAN_XUAT" />
+    <NavigationProperty Name="PHAN_LOAI" Relationship="Self.FK_NHAP_KHO_PHAN_LOAI2" FromRole="NHAP_KHO" ToRole="PHAN_LOAI" />
+  </EntityType>
+  <EntityType Name="PHAN_LOAI">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="NHAP_KHO" Relationship="Self.FK_NHAP_KHO_PHAN_LOAI2" FromRole="PHAN_LOAI" ToRole="NHAP_KHO" />
+    <NavigationProperty Name="SANPHAMs" Relationship="Self.FK_SANPHAM_PHAN_LOAI" FromRole="PHAN_LOAI" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaNSX" Type="Int32" />
+    <Property Name="MaLoai" Type="Int32" />
+    <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="HinhMinhHoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CTDON_HANG" Relationship="Self.FK_CTDON_HANG_SANPHAM" FromRole="SANPHAM" ToRole="CTDON_HANG" />
+    <NavigationProperty Name="NHA_SAN_XUAT" Relationship="Self.FK_SANPHAM_NHA_SAN_XUAT" FromRole="SANPHAM" ToRole="NHA_SAN_XUAT" />
+    <NavigationProperty Name="PHAN_LOAI" Relationship="Self.FK_SANPHAM_PHAN_LOAI" FromRole="SANPHAM" ToRole="PHAN_LOAI" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TIN_TUC">
+    <Key>
+      <PropertyRef Name="STT" />
+    </Key>
+    <Property Name="STT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenTT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TomTat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HinhMinhHoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="href" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_CTDON_HANG_DON_DAT_HANG">
+    <End Role="DON_DAT_HANG" Type="Self.DON_DAT_HANG" Multiplicity="1" />
+    <End Role="CTDON_HANG" Type="Self.CTDON_HANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DON_DAT_HANG">
+        <PropertyRef Name="MaDH" />
+      </Principal>
+      <Dependent Role="CTDON_HANG">
+        <PropertyRef Name="MaDH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTDON_HANG_SANPHAM">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="CTDON_HANG" Type="Self.CTDON_HANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="CTDON_HANG">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DON_DAT_HANG_KHACH_HANG">
+    <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+    <End Role="DON_DAT_HANG" Type="Self.DON_DAT_HANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACH_HANG">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="DON_DAT_HANG">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHAP_KHO_NHA_SAN_XUAT2">
+    <End Role="NHA_SAN_XUAT" Type="Self.NHA_SAN_XUAT" Multiplicity="0..1" />
+    <End Role="NHAP_KHO" Type="Self.NHAP_KHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHA_SAN_XUAT">
+        <PropertyRef Name="MaNSX" />
+      </Principal>
+      <Dependent Role="NHAP_KHO">
+        <PropertyRef Name="MaNSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SANPHAM_NHA_SAN_XUAT">
+    <End Role="NHA_SAN_XUAT" Type="Self.NHA_SAN_XUAT" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHA_SAN_XUAT">
+        <PropertyRef Name="MaNSX" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaNSX" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NHAP_KHO_PHAN_LOAI2">
+    <End Role="PHAN_LOAI" Type="Self.PHAN_LOAI" Multiplicity="0..1" />
+    <End Role="NHAP_KHO" Type="Self.NHAP_KHO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHAN_LOAI">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="NHAP_KHO">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SANPHAM_PHAN_LOAI">
+    <End Role="PHAN_LOAI" Type="Self.PHAN_LOAI" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHAN_LOAI">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLTuiXachEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ADMINs" EntityType="Self.ADMIN" />
+    <EntitySet Name="CTDON_HANG" EntityType="Self.CTDON_HANG" />
+    <EntitySet Name="DON_DAT_HANG" EntityType="Self.DON_DAT_HANG" />
+    <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" />
+    <EntitySet Name="NHA_SAN_XUAT" EntityType="Self.NHA_SAN_XUAT" />
+    <EntitySet Name="NHAP_KHO" EntityType="Self.NHAP_KHO" />
+    <EntitySet Name="PHAN_LOAI" EntityType="Self.PHAN_LOAI" />
+    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TIN_TUC" EntityType="Self.TIN_TUC" />
+    <AssociationSet Name="FK_CTDON_HANG_DON_DAT_HANG" Association="Self.FK_CTDON_HANG_DON_DAT_HANG">
+      <End Role="DON_DAT_HANG" EntitySet="DON_DAT_HANG" />
+      <End Role="CTDON_HANG" EntitySet="CTDON_HANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTDON_HANG_SANPHAM" Association="Self.FK_CTDON_HANG_SANPHAM">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CTDON_HANG" EntitySet="CTDON_HANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DON_DAT_HANG_KHACH_HANG" Association="Self.FK_DON_DAT_HANG_KHACH_HANG">
+      <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+      <End Role="DON_DAT_HANG" EntitySet="DON_DAT_HANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHAP_KHO_NHA_SAN_XUAT2" Association="Self.FK_NHAP_KHO_NHA_SAN_XUAT2">
+      <End Role="NHA_SAN_XUAT" EntitySet="NHA_SAN_XUAT" />
+      <End Role="NHAP_KHO" EntitySet="NHAP_KHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_NHA_SAN_XUAT" Association="Self.FK_SANPHAM_NHA_SAN_XUAT">
+      <End Role="NHA_SAN_XUAT" EntitySet="NHA_SAN_XUAT" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NHAP_KHO_PHAN_LOAI2" Association="Self.FK_NHAP_KHO_PHAN_LOAI2">
+      <End Role="PHAN_LOAI" EntitySet="PHAN_LOAI" />
+      <End Role="NHAP_KHO" EntitySet="NHAP_KHO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SANPHAM_PHAN_LOAI" Association="Self.FK_SANPHAM_PHAN_LOAI">
+      <End Role="PHAN_LOAI" EntitySet="PHAN_LOAI" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

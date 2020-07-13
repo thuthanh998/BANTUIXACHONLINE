@@ -1,0 +1,55 @@
+﻿@using TuiXachOnline.Models
+@model List<SANPHAM>
+@{
+    ViewBag.Title = "ChuDeSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="hero-wrap hero-bread" style="background-image: url('/images/nenchude.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Trang chủ</a></span> <span class="mr-2"><a href="index.html">Loại túi</a></span> <span>@ViewBag.Name</span></p>
+                <h1 class="mb-0 bread" style="font-family:Arial;font-weight: bold;">@ViewBag.Name</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" style="margin-top: 52px;">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-md-6 col-lg-3" style="max-width: 24%; display: inline-block;">
+           
+            
+            <div class="product">
+                <a href="/DetailTui/ChitietSP?MaSP=@item.MaSP" class="img-prod">
+                    <img class="img-fluid" src="~/images/hinhtui/@item.HinhMinhHoa" alt="Colorlib Template">
+
+                    <div class="overlay"></div>
+                </a>
+                <div class="text py-3 pb-4 px-3 text-center">
+                    <h3 style="font-size: 13px;">@item.TenSP</h3>
+                    <div class="d-flex">
+                        <div class="pricing">
+                            <p class="price"><span>@item.DonGia</span></p>
+                        </div>
+                    </div>
+                    <div class="bottom-area d-flex px-3">
+                        <div class="m-auto d-flex">
+                            <a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center">
+                                <span><i class="ion-ios-menu"></i></span>
+                            </a>
+                            <a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+                                <span><i class="ion-ios-cart"></i></span>
+                            </a>
+                            <a href="#" class="heart d-flex justify-content-center align-items-center ">
+                                <span><i class="ion-ios-heart"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

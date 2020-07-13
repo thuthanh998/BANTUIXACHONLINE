@@ -1,0 +1,68 @@
+﻿body{
+    margin:0;
+    padding:0;
+    /*background-image:url(../Images/bg-01.jpg);*/
+    background-color:#ccc;
+    background-size:cover;
+    width:100%;
+
+}
+.login-ad {
+        position: absolute;
+    width: 437px;
+    height: 357px;
+    background-color: white;
+    top: 10%;
+    left: 35%;
+}
+.icon {
+    /*box-shadow: 1px 1px 13px 1px #32c787;*/
+    background-color: #32c787;
+    margin: auto;
+    height: 110px;
+    width: 250px;
+    margin-top: -50px;
+    margin-left: -4px;
+    border-radius: 3px;
+    border: solid 1px #2ac582;
+}
+button:focus{
+    border:none;
+}
+button:active{
+    border:none;
+}
+form{
+    text-align:center;
+    width:70%;
+    margin:auto;
+    padding-top:35px;
+}
+.div-login{
+    padding-top:20px;
+
+}
+input[type="text"],[type="Password"]{
+    border:none;
+    max-width: 100%;
+    border-bottom:solid 1px #ccc;
+    padding: 12px;
+    resize: vertical;
+    text-align:center;
+}
+.div-login button{
+    height: 50px;
+ 
+    width: 100px;
+    background-color: #32c787;
+    border: none;
+    
+}
+
+.div-login button:hover{
+    background-color:#03962e
+}
+
+
+
+    
